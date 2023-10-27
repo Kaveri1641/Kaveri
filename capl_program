@@ -1,0 +1,38 @@
+/*@!Encoding:65001*/
+includes
+{
+  
+}
+
+variables
+{
+  msTimer indicator, wiper;
+  message 0x10 m1 = {dlc=8};
+  message 0x15 m2 = {dlc=8};
+  byte byte1,byte2,byte3,byte4,byte5,byte6,byte7,byte8;
+}
+
+on key 'i'
+{
+  setTimerCyclic(indicator,500);
+}
+
+on key 'w'
+{
+  setTimerCyclic(wiper,500);
+}
+
+on timer indicator
+{
+  m1.byte(0)=0x01;
+  output(m1);
+  write("Indicator Timer cyclic has activated");
+}
+
+on timer wiper
+{
+  m2.byte(0)=0x02;
+  output(m2);
+  write("wiper timer cyclic has activated");
+}
+
